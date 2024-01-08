@@ -1,0 +1,29 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Sample {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://the-internet.herokuapp.com/iframe");
+
+
+		
+		WebElement iframeElement = driver.findElement(By.cssSelector("iframe#iframe"));
+		driver.switchTo().frame(iframeElement);
+
+		
+		WebElement pTagElement = driver.findElement(By.cssSelector("p"));
+		pTagElement.clear(); // Clear existing text if any
+		pTagElement.sendKeys("Hello People");
+
+		
+		driver.switchTo().defaultContent();
+
+		
+		driver.quit();
+    }
+}
